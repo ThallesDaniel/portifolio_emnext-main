@@ -5,10 +5,14 @@
 
 @layer base {
   body {
-    @apply bg-gray-900 text-gray-100
+    @apply bg-primary text-gray-100; 
+}
+}
+@layer utilities {
+  .bg-primary {
+    background-color: rgb(19, 31, 57); 
   }
 }
-
 .container {
   @apply mx-auto w-full max-w-[1200px] px-6
 }
