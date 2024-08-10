@@ -1,3 +1,5 @@
+import { ContactForm } from "./components/contact-form";
+import { Footer } from "./components/footer";
 import { HeroSection } from "./components/header/pages/home/hero-section";
 import { Highlightedprojects } from "./components/header/pages/home/highlighted-projects";
 import { KnownTechs } from "./components/header/pages/home/known-techs";
@@ -10,6 +12,8 @@ export default async function Home() {
       <KnownTechs />
       <Highlightedprojects/>
       <WorkExperience/>
+      <ContactForm/>
+      <Footer/>
     </>
   )
 }

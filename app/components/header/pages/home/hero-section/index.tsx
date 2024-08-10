@@ -86,6 +86,7 @@ export const HeroSection = () => {
           src={"/images/profile-pic.png"}
           alt="Thalles Daniel"
           className="w-[300px] h-[300px] lg:w-[404px] lg:h-[404px] mb-6 lg:mb-0 rounded-lg object-cover"
+          style={{ filter: 'drop-shadow(2px 4px 6px #78cb72)' }}
         />
       </div>
     </section>
