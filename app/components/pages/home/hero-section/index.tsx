@@ -6,7 +6,6 @@ import {
   TbBrandGithub,
   TbBrandInstagram,
   TbBrandLinkedin,
-  TbBrandMailgun,
   TbBrandWhatsapp,
 } from "react-icons/tb";
 import { MdOutlineMail } from "react-icons/md";
@@ -22,10 +21,6 @@ const MOCK_CONTACTS = [
   {
     url: "https://www.linkedin.com/in/thalles-daniel-66a604229",
     icon: <TbBrandLinkedin />,
-  },
-  {
-    url: "mailto:contato@thallesdaniel.com",
-    icon: <MdOutlineMail />,
   },
   {
     url: "https://api.whatsapp.com/send/?phone=5531998518179&text&type=phone_number&app_absent=0",
