@@ -22,14 +22,14 @@ const getPageData = async (): Promise<HomePageData> => {
         technologies {
           name
         }
-        profilePricture {
+        profilePicture {
           url
         }
-        social {
+        socials {
           url
           iconSvg
         }
-        knowTechs {
+        knownTechs {
           iconSvg
           name
           startDate
@@ -39,17 +39,18 @@ const getPageData = async (): Promise<HomePageData> => {
   `
 
   return fetchHygraphQuery(
-    query
+    query,
+    1000 * 60 * 60 * 24,
   )
 }
  
 export default async function Home() {
   const { page: PageData } = await getPageData()
-  console.log(PageData)
+  
   return (
     <>
-      <HeroSection />
-      <KnownTechs />
+      <HeroSection homeInfo = {PageData} />
+      <KnownTechs techs = {PageData.knownTechs}/>
       <Highlightedprojects/>
       <WorkExperience/>
       <ContactForm/>

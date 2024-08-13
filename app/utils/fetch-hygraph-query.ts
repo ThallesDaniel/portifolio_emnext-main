@@ -21,7 +21,7 @@
   
 //     return data
 //   }
-export const fetchHygraphQuery = async(query: string) =>{
+export const fetchHygraphQuery = async(query: string, revalidate?: number,) =>{
     const response = await fetch(process.env.HYGRAPH_URL!, {
       method: 'POST',
       headers: {
@@ -29,7 +29,7 @@ export const fetchHygraphQuery = async(query: string) =>{
         Accept: 'application/json',
         Authorization: `Bearer ${process.env.HYGRAPH_TOKEN}`,
       }, next: {
-        revalidate: 60*60*24
+        revalidate
       },
       body: JSON.stringify({
         query,

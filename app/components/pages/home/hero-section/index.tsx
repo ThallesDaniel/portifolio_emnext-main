@@ -1,38 +1,20 @@
 'use client'
 import { Button } from "@/app/components/button";
 import { TechBadge } from "@/app/components/tech-badge";
+import { motion } from 'framer-motion';
+import { CMSIcon } from '@/app/components/cms-icon';
 import { HiArrowNarrowRight } from "react-icons/hi";
-import {
-  TbBrandGithub,
-  TbBrandInstagram,
-  TbBrandLinkedin,
-  TbBrandWhatsapp,
-} from "react-icons/tb";
-import { MdOutlineMail } from "react-icons/md";
 
 import Image from "next/image";
+import { HomePageInfo } from "@/app/types/page-info";
+import { RichText } from "@/app/components/rich-text";
+import { techBadgeAnimation } from "@/app/lib/animations";
 
+type HeroSectionProps = {
+  homeInfo: HomePageInfo
+}
 
-const MOCK_CONTACTS = [
-  {
-    url: "https://github.com/ThallesDaniel",
-    icon: <TbBrandGithub />,
-  },
-  {
-    url: "https://www.linkedin.com/in/thalles-daniel-66a604229",
-    icon: <TbBrandLinkedin />,
-  },
-  {
-    url: "https://api.whatsapp.com/send/?phone=5531998518179&text&type=phone_number&app_absent=0",
-    icon: <TbBrandWhatsapp />,
-  },
-  {
-    url: "https://www.instagram.com/thalles_webdeveloper/",
-    icon: <TbBrandInstagram />,
-  },
-];
-
-export const HeroSection = () => {
+export const HeroSection = ({homeInfo}:HeroSectionProps) => {
   const handleContact = () => {
     const contactSection = document.querySelector('#contact')
     if (contactSection) {
@@ -45,42 +27,59 @@ export const HeroSection = () => {
       flex flex-row justify-end pb-10 sm:pb-32 py-52 lg:pb-[100px]"
     >
       <div className="container flex items-start justify-between flex-col-reverse lg:flex-row">
-        <div className="w-full lg:max-w-[520px]">
+      <motion.div
+          className="w-full lg:max-w-[530px]"
+          initial={{ opacity: 0, x: -100 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: -100 }}
+          transition={{ duration: 0.5 }}
+        >
           <p className="font-mono text-emerald-400">Olá! Meu nome é</p>
           <h2 className="text-4xl font-medium mt-2">THALLES DANIEL </h2>
-          <p className="text-gray-400 my-6 font-sans-f text-sm sm:text-base">
-            Olá! Meu nome é Thalles Daniel e sou um desenvolvedor Full-Stack Web
-            apaixonado por criar soluções inovadoras e eficientes. Com uma
-            sólida formação e experiência em diversas tecnologias, estou sempre
-            pronto para enfrentar desafios e entregar produtos de alta
-            qualidade. Estou disponível para colaborações, projetos desafiadores
-            e oportunidades que me permitam crescer profissionalmente.
-          </p>
+          <div className="text-gray-400 my-6 font-sans-f text-sm sm:text-base">
+            <RichText content={homeInfo.introduction.raw}/>
+          </div>
 
           <div className="flex flex-wrap gap-x-2 gap-y-3 lg:max-w-[340px]">
-            {Array.from({ length: 5 }).map((_, index) => (
-              <TechBadge name="Angular" />
+          <div className="flex flex-wrap gap-x-2 gap-y-3 lg:max-w-[340px]">
+            {homeInfo.technologies.map((tech, i) => (
+              <TechBadge
+                name={tech.name}
+                key={tech.name}
+                {...techBadgeAnimation}
+               // transition={{ duration: 0.2, delay: i * 0.1 }}
+              />
             ))}
+          </div>
           </div>
           <div className="mt-6 lg:mt-10 flex sm:items-center sm:gap-5 flex-col sm:flex-row">
               <Button className="w-max shadow-button " onClick={handleContact}>
               Entre em contato
               <HiArrowNarrowRight size={18} />
             </Button>
+
             <div className="text-2xl text-gray-600 flex items-center h-20 gap-3">
-              {MOCK_CONTACTS.map((contact, index) => (
+              {homeInfo.socials.map((contact, i) => (
                 <a
                   href={contact.url}
-                  key={`contact-${index}`}
+                  key={`contact-${i}`}
                   target="_blank"
                   className="hover:text-gray-100 transition-colors"
+                  rel="noreferrer"
                 >
-                  {contact.icon}
+                  <CMSIcon icon={contact.iconSvg} />
                 </a>
               ))}
             </div>
           </div>
-        </div>
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: 200, scale: 0.5 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          exit={{ opacity: 0, y: 200, scale: 0.5 }}
+          transition={{ duration: 0.5 }}
+          className="origin-center"
+        >
         <Image
           width={420}
           height={404}
@@ -89,6 +88,7 @@ export const HeroSection = () => {
           className="w-[300px] h-[300px] lg:w-[404px] lg:h-[404px] mb-6 lg:mb-0 rounded-lg object-cover"
           style={{ filter: 'drop-shadow(2px 4px 6px #78cb72)' }}
         />
+        </motion.div>
       </div>
     </section>
   );
