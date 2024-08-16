@@ -47,7 +47,7 @@ export const HeroSection = ({homeInfo}:HeroSectionProps) => {
                 name={tech.name}
                 key={tech.name}
                 {...techBadgeAnimation}
-               // transition={{ duration: 0.2, delay: i * 0.1 }}
+                transition={{ duration: 0.2, delay: i * 0.1 }}
               />
             ))}
           </div>

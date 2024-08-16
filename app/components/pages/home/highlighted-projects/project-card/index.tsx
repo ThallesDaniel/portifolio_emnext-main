@@ -29,7 +29,7 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
         transition={{ duration: 0.3, delay: 0.3 }}
       >
         <Image
-          src="https://www.thallesdaniel.com/assets/img/Captura%20de%20tela%202024-07-02%20115605.png"
+          src={project.thumbnail.url}
           width={420}
           height={304}
           alt={`Thumbnail do projeto ${project.title}`}
