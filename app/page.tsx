@@ -2,7 +2,7 @@ import { BackToTop } from "./components/back-to-top";
 import { ContactForm } from "./components/contact-form";
 import { Footer } from "./components/footer";
 import { HeroSection } from "./components/pages/home/hero-section";
-import { Highlightedprojects } from "./components/pages/home/highlighted-projects";
+import { HighlightedProjects } from "./components/pages/home/highlighted-projects";
 import { KnownTechs } from "./components/pages/home/known-techs";
 import { WorkExperience } from "./components/pages/home/work-experience";
 import { HomePageData } from "./types/page-info";
@@ -14,7 +14,7 @@ export const metadata = {
 
 const getPageData = async (): Promise<HomePageData> => {
   const query = `
-    query PageInfoQuery {
+ query PageInfoQuery {
       page(where: {slug: "home"}) {
         introduction {
           raw
@@ -34,6 +34,33 @@ const getPageData = async (): Promise<HomePageData> => {
           name
           startDate
         }
+        highlightProjects {
+          slug
+          thumbnail {
+            url
+          }
+          title
+          shortDescription
+          technologies {
+            name
+          }
+        }
+      }
+      workExperiences {
+        companyLogo {
+          url
+        }
+        role
+        companyName
+        companyUrl
+        startDate
+        endDate
+        description {
+          raw
+        }
+        technologies {
+          name
+        }
       }
     }
   `
@@ -45,14 +72,14 @@ const getPageData = async (): Promise<HomePageData> => {
 }
  
 export default async function Home() {
-  const { page: PageData } = await getPageData()
+  const { page: PageData, workExperiences } = await getPageData()
   
   return (
     <>
       <HeroSection homeInfo = {PageData} />
       <KnownTechs techs = {PageData.knownTechs}/>
-      <Highlightedprojects/>
-      <WorkExperience/>
+      <HighlightedProjects projects = {PageData.highlightProjects}/>
+      <WorkExperience experiences={workExperiences} />
       <ContactForm/>
       <Footer/>
       <BackToTop/>

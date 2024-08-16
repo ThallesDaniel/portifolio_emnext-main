@@ -83,7 +83,7 @@ export const HeroSection = ({homeInfo}:HeroSectionProps) => {
         <Image
           width={420}
           height={404}
-          src={"/images/profile-pic.png"}
+          src={homeInfo.profilePicture.url}
           alt="Thalles Daniel"
           className="w-[300px] h-[300px] lg:w-[404px] lg:h-[404px] mb-6 lg:mb-0 rounded-lg object-cover"
           style={{ filter: 'drop-shadow(2px 4px 6px #78cb72)' }}
