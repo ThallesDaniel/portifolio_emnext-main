@@ -24,6 +24,7 @@ export const PageIntroduction = () => {
           Aqui você poderá ver alguns dos trabalhos que eu desenvolvi. Navegue à
           vontade e explore os projetos para ver como foram criados, as
           tecnologias utilizadas e as funcionalidades implementadas.
+          NÃO se esqueça de acessar meu GitHub e ver TODOS meus projetos!!
         </p>
         <Link href="/">
           <HiArrowNarrowLeft size={20} />
