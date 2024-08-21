@@ -2,30 +2,17 @@
 
 import Image from 'next/image'
 import { motion } from 'framer-motion'
-//import { ProjectSection } from '@/app/types/projects'
+import { ProjectSection } from '@/app/types/projects'
 import { fadeUpAnimation } from '@/app/lib/animations'
 
-// type ProjectSectionsProps = {
-//   sections: ProjectSection[]
-// }
+type ProjectSectionsProps = {
+  sections: ProjectSection[]
+}
 
-const section = [
-    {
-      title: "Home",
-      image:
-        "https://www.thallesdaniel.com/assets/img/Captura%20de%20tela%202024-07-02%20115605.png",
-    },
-    {
-      title: "Sistemas",
-      image:
-        "https://www.thallesdaniel.com/assets/img/Captura%20de%20tela%202024-07-02%20115605.png",
-    },
-  ];
-
-export const ProjectSections = () => {
+export const ProjectSections = ({ sections }: ProjectSectionsProps) => {
   return (
     <section className="container my-12 md:my-32 flex flex-col gap-8 md:gap-32">
-      {section.map((section) => (
+      {sections.map((section) => (
         <motion.div
           key={section.title}
           className="flex flex-col items-center gap-6 md:gap-12"
@@ -40,7 +27,7 @@ export const ProjectSections = () => {
             height={672}
             className="w-full aspect-auto rounded-lg object-cover"
             alt={`Imagem da sessão ${section.title}`}
-            src={section.image}
+            src={section.image.url}
             unoptimized
           />
         </motion.div>
