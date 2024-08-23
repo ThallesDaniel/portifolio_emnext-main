@@ -9,7 +9,7 @@ export const metadata = {
     default: 'Home',
     template: '%s | Thalles Andrade',
   }, 
-  icons: [
+  icons: [ 
     {
       url: '/images/logo.png',
     },
