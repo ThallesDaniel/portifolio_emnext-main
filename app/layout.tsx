@@ -8,8 +8,8 @@ export const metadata = {
   title: {
     default: 'Home',
     template: '%s | Thalles Andrade',
-  },
-  icons: [
+  }, 
+  icons: [ 
     {
       url: '/images/logo.png',
     },
